@@ -10,6 +10,11 @@ use App\User;
 
 class Question extends Model
 {
+
+    // added to ignor the must assigment error in the store methode
+
+    protected $guarded = [];
+
     // Question Model Relationships
 
     public function user(){
@@ -26,6 +31,11 @@ class Question extends Model
     public function category()
     {
         return $this->belongsTo(category::class);
+    }
+
+    public function getPathAttribute(){
+
+        return asset("api/question/$this->slug");
     }
     
 
